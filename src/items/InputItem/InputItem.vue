@@ -2,7 +2,7 @@
   <transition name="fade">
     <div :style="{width: width + 'px', height: height + 'px'}" :class="[isTop?'header-top':'','header-box']" v-if="showInputBox">
       <span class="input-box" :style="{width: width + 'px', height: height + 'px'}">
-        <input class="input-item" :style="{width: width + 'px', height: height + 'px'}" @input="onInput" />
+        <input class="input-item" :style="{width: width + 'px', height: height + 'px'}" v-model="value" :value="value" @input="onInput" />
       </span>
     </div>
   </transition>
@@ -30,42 +30,15 @@ module.exports = {
   },
   data() {
     return {
+      value: '',
     }
   },
   computed: {
-    getDir: function() {
-      // return this.direction === 'top' ? 'top:' + this.directionDistance : 'bottom' + this.directionDistance;
-      return 'top';
-    }
+    
   },
-  // created() {
-  //   var self = this;
-  //   var lastScroll = 0;
-  //   // var wrapper = document.getElementsByClassName('j_wrapper')[0];
-  //   // console.log('ss' + document.getElementsByClassName('j_wrapper')[1]);
-
-  //   window.onscroll = function() {
-  //     if (document.documentElement.scrollTop - lastScroll > 0) {
-  //       //down
-  //       self.showInputBox = false;
-  //     } else {
-  //       //up
-  //       self.showInputBox = true;
-  //     }
-  //     lastScroll = document.documentElement.scrollTop;
-  //   }
-  // },
-  // mounted() {
-  //   var self = this;
-  //   if (document.documentElement.offsetHeight >= document.documentElement.clientHeight) {
-  //     self.showInputBox = true;
-  //   } else {
-  //     self.showInputBox = false;
-  //   }
-  // },
   methods: {
     onInput(e) {
-      this.$emit('inputting', { value: e.value });
+      this.$emit('onInput', { value: this.value });
     }
   }
 }

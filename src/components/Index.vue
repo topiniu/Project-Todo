@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper j_wrapper">
-    <t-input :showInputBox="showInputBox" :isTop="false">
+    <t-input :showInputBox="showInputBox" :isTop="true" @onInput="onInputImp">
 
     </t-input>
     <div class="body-box">
-
+      <h3>{{inputText}}</h3>
     </div>
     <div class="footer-box">
 
@@ -25,14 +25,11 @@ export default {
     return {
       inputText: '',
       showInputBox: true,
-
     }
   },
   created() {
     var self = this;
     var lastScroll = 0;
-    // var wrapper = document.getElementsByClassName('j_wrapper')[0];
-    // console.log('ss' + document.getElementsByClassName('j_wrapper')[1]);
 
     window.onscroll = function() {
       var flag = document.body.scrollTop == 0 ? document.documentElement.scrollTop : document.body.scrollTop;
@@ -52,6 +49,11 @@ export default {
       self.showInputBox = true;
     } else {
       self.showInputBox = false;
+    }
+  },
+  methods: {
+    onInputImp(e) {
+      this.inputText = e.value;
     }
   }
 }
