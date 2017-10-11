@@ -1,11 +1,11 @@
 <template>
-  <transition name="fade">
-    <div :style="{width: width + 'px', height: height + 'px'}" :class="[isTop?'header-top':'','header-box']" v-if="showInputBox">
-      <span class="input-box" :style="{width: width + 'px', height: height + 'px'}">
-        <input class="input-item" :style="{width: width + 'px', height: height + 'px'}" v-model="value" :value="value" @input="onInput" />
-      </span>
-    </div>
-  </transition>
+    <transition name="fade">
+      <div :style="{width: width + 'px'}" :class="[isTop?'header-top':'','header-box']" v-if="showInputBox">
+        <span class="input-box" :style="{width: width + 'px'}">
+          <input class="input-item" :style="{width: width + 'px', height: height + 'px'}" v-model="value" :value="value" @input="onInput" />
+        </span>
+      </div>
+    </transition>
 </template>
 
 <script>
@@ -34,12 +34,17 @@ module.exports = {
     }
   },
   computed: {
-    
+    // getInputHeight: function(){
+    //   return 
+    // }
   },
   methods: {
     onInput(e) {
       this.$emit('onInput', { value: this.value });
     }
+  },
+  mounted(){
+    
   }
 }
 

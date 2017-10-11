@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper j_wrapper">
-    <t-input :showInputBox="showInputBox" :isTop="true" @onInput="onInputImp">
-
-    </t-input>
+    <div class="header-box" :style="{height: headerBoxHeight + 'px'}">
+      <t-input :showInputBox="showInputBox" :isTop="true" @onInput="onInputImp"></t-input>
+    </div>
     <div class="body-box">
-      <h3>{{inputText}}</h3>
+
     </div>
     <div class="footer-box">
 
@@ -25,6 +25,7 @@ export default {
     return {
       inputText: '',
       showInputBox: true,
+      headerBoxHeight: 0,
     }
   },
   created() {
@@ -49,7 +50,8 @@ export default {
       self.showInputBox = true;
     } else {
       self.showInputBox = false;
-    }
+    };
+    self.headerBoxHeight = document.getElementsByClassName('input-box')[0].clientHeight + 5;
   },
   methods: {
     onInputImp(e) {
