@@ -1,11 +1,11 @@
 <template>
-    <transition name="fade">
-      <div :style="{width: width + 'px'}" :class="[isTop?'header-top':'','header-box']" v-if="showInputBox">
-        <span class="input-box" :style="{width: width + 'px'}">
-          <input class="input-item" :style="{width: width + 'px', height: height + 'px'}" v-model="value" :value="value" @input="onInput" />
-        </span>
-      </div>
-    </transition>
+  <transition name="fade">
+    <div :style="{width: width + 'px'}" :class="[isTop?'header-top':'','input-item-container']" v-if="showInputBox">
+      <span class="input-box" :style="{width: width + 'px'}">
+        <input class="input-item" :style="{width: width + 'px', height: height + 'px'}" v-model="value" :value="value" @input="onInput" />
+      </span>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -43,15 +43,15 @@ module.exports = {
       this.$emit('onInput', { value: this.value });
     }
   },
-  mounted(){
-    
+  mounted() {
+
   }
 }
 
 </script>
 
 <style scoped>
-.header-box {
+.input-item-container {
   transition: all .3s;
   width: 100%;
   position: fixed;
@@ -68,7 +68,7 @@ module.exports = {
   bottom: auto;
 }
 
-.header-box .input-box {
+.input-item-container .input-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +78,7 @@ module.exports = {
   /* border: 1px solid red; */
 }
 
-.header-box .input-item {
+.input-item-container .input-item {
   display: block;
   width: 80%;
   height: 30px;
@@ -89,11 +89,12 @@ module.exports = {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s
+  transition: all 1s
 }
 
 .fade-enter,
 .fade-leave-to {
+  /* transform: scale(0); */
   opacity: 0
 }
 </style>
