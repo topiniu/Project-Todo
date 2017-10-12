@@ -14,19 +14,55 @@ export default {
       largeStar: true,
       smallStar: false,
 
+      resData:
+        {
+          user: {
+            name: 'topiniu',
+            id: '98976',
+          },
+          list: [
+            {
+              id: '2016091602',
+              createtime: '2016-09-16',
+              content: '夜晚煮面记得打两个鸡蛋，小心油溅到身上了哦',
+              started: true,
+              finished: false,
+              animateStarted: false,
+            }, {
+              id: '2016091682',
+              createtime: '2016-09-16',
+              content: '天气阴晴不定，一定要随身带把伞哦',
+              started: false,
+              finished: true,
+              animateStarted: true,
+            }, {
+              id: '2016091658',
+              createtime: '2016-09-16',
+              content: '中午还吃烤肉饭吗，都吃不腻吗',
+              started: false,
+              finished: false,
+              animateStarted: true,
+            }, {
+              id: '2016091638',
+              createtime: '2016-09-16',
+              content: '我决定中午换换口味',
+              started: true,
+              finished: true,
+              animateStarted: false,
+            },
+          ],
+        },
     };
   },
   computed: {
-    getBGC() {
-      return this.activeStar ? '#54afff' : '#ddeefd';
-    },
+
   },
   created() {
     const self = this;
     let lastScroll = 0;
 
-    window.onscroll = function () {
-      const flag = document.body.scrollTop == 0 ? document.documentElement.scrollTop : document.body.scrollTop;
+    window.onscroll = () => {
+      const flag = document.body.scrollTop === 0 ? document.documentElement.scrollTop : document.body.scrollTop;
       if (flag - lastScroll > 0 && flag > 0) {
         // down, flag > 0位了防止ios的橡皮筋效果造成输入框隐藏
         self.showInputBox = false;
@@ -50,12 +86,22 @@ export default {
     onInputImp(e) {
       this.inputText = e.value;
     },
-    starThis() {
-      this.activeStar = !this.activeStar;
+    starThis(item) {
+      // this.activeStar = !this.activeStar;
       setTimeout(() => {
-        this.largeStar = !this.largeStar;
-        this.smallStar = !this.smallStar;
+        // item.started = !item.started;
+        // this.smallStar = !this.smallStar;
       }, 500);
+
+      item.started = !item.started;
+      item.animateStarted = item.started;
+      setTimeout(() => {
+        item.animateStarted = !item.animateStarted;
+      }, 500);
+    },
+    getBGC(e) {
+      // console.log(this);
+      return e ? '#54afff' : '#ddeefd';
     },
   },
 };
