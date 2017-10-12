@@ -75,11 +75,13 @@ export default {
   },
   mounted() {
     const self = this;
-    if (document.documentElement.offsetHeight >= document.documentElement.clientHeight) {
+    const flag = document.body.scrollTop === 0 ? document.documentElement.scrollTop : document.body.scrollTop;
+    if(flag < 10){
       self.showInputBox = true;
-    } else {
+    }else{
       self.showInputBox = false;
     }
+    
     self.headerBoxHeight = document.getElementsByClassName('input-box')[0].clientHeight + 5;
   },
   methods: {
@@ -99,6 +101,26 @@ export default {
     getBGC(e) {
       // console.log(this);
       return e ? '#54afff' : '#ddeefd';
+    },
+    insertNewItem(){
+      if(this.inputText.trim().length <= 0){
+        alert('Hey guy, you must type something here ok???!!!');
+      }else{
+        const date = new Date().getFullYear + '-' + new Date().getMonth + '-' + new Date().getDay();
+
+        const id = new Date().getFullYear + new Date().getMonth + new Date().getDay() + new Date().getHours() + new Date().getMinutes() + new Date().getSeconds() + new Date().getMilliseconds() + ' ';
+
+        const content = this.inputText;
+        
+        this.resData.list.push({
+          id: id,
+          createtime: date,
+          content: content,
+          started: false,
+          finished: false,
+          animateStarted: true,
+        });
+      }
     },
 
   },

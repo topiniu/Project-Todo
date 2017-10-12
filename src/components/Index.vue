@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper j_wrapper">
     <div class="header-box" :style="{height: headerBoxHeight + 'px'}">
-      <t-input :showInputBox="showInputBox" :isTop="true" @onInput="onInputImp"></t-input>
+      <t-input :showInputBox="showInputBox" :height="30" :width="345" :isTop="true" @onInput="onInputImp" @enter="insertNewItem"></t-input>
     </div>
     <div class="body-box">
       <!-- 待办事项：操作{添加子任务，删除/添加星标，删除此事项} -->

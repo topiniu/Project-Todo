@@ -2,7 +2,7 @@
   <transition name="fade">
     <div :style="{width: width + 'px'}" :class="[isTop?'header-top':'','input-item-container']" v-if="showInputBox">
       <span class="input-box" :style="{width: width + 'px'}">
-        <input class="input-item" :style="{width: width + 'px', height: height + 'px'}" v-model="value" :value="value" @input="onInput" />
+        <input class="input-item" :style="{width: width + 'px', height: height + 'px', fontSize: fontSize + 'px', paddingLeft: paddingLeft + 'px', borderRadius: borderRadius + 'px'}" v-model="value" :value="value" @input="onInput" @keyup.enter="enter" value="确定"/>
       </span>
     </div>
   </transition>
@@ -19,11 +19,27 @@ module.exports = {
       type: Number,
       default: 34,
     },
+    fontSize: {
+      type: Number,
+      default: 16,
+    },
+    paddingLeft: {
+      type: Number,
+      default: 5,
+    },
+    borderRadius:{
+      type: Number,
+      default: 8,
+    },
     isTop: {
       type: Boolean,
       default: true,
     },
     showInputBox: {
+      type: Boolean,
+      default: true,
+    },
+    clear: {
       type: Boolean,
       default: true,
     }
@@ -41,6 +57,12 @@ module.exports = {
   methods: {
     onInput(e) {
       this.$emit('onInput', { value: this.value });
+    },
+    enter(){
+      this.$emit('enter');
+      if(this.clear){
+        this.value = '';
+      }
     }
   },
   mounted() {
@@ -52,7 +74,7 @@ module.exports = {
 
 <style scoped>
 .input-item-container {
-  transition: all .3s;
+  transition: all .1s;
   width: 100%;
   position: fixed;
   left: 50%;
@@ -82,7 +104,7 @@ module.exports = {
   display: block;
   width: 80%;
   height: 30px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   /* margin-top: 10px; */
   border: 1px solid gray;
 }
