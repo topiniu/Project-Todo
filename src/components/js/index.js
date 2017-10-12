@@ -106,9 +106,9 @@ export default {
       if(this.inputText.trim().length <= 0){
         alert('Hey guy, you must type something here ok???!!!');
       }else{
-        const date = new Date().getFullYear + '-' + new Date().getMonth + '-' + new Date().getDay();
+        const date = new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDay();
 
-        const id = new Date().getFullYear + new Date().getMonth + new Date().getDay() + new Date().getHours() + new Date().getMinutes() + new Date().getSeconds() + new Date().getMilliseconds() + ' ';
+        const id = new Date().getFullYear() + '' + new Date().getMonth() + '' + new Date().getDay() + '' + new Date().getHours() + '' + new Date().getMinutes() + '' + new Date().getSeconds() + '' + new Date().getMilliseconds() + '';
 
         const content = this.inputText;
         
@@ -120,6 +120,8 @@ export default {
           finished: false,
           animateStarted: true,
         });
+
+        console.log(this.resData.list);
       }
     },
 
