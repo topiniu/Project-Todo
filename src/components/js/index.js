@@ -33,7 +33,7 @@ export default {
               createtime: '2016-09-16',
               content: '天气阴晴不定，一定要随身带把伞哦',
               started: false,
-              finished: true,
+              finished: false,
               animateStarted: true,
             }, {
               id: '2016091658',
@@ -47,7 +47,7 @@ export default {
               createtime: '2016-09-16',
               content: '我决定中午换换口味',
               started: true,
-              finished: true,
+              finished: false,
               animateStarted: false,
             },
           ],
@@ -87,21 +87,19 @@ export default {
       this.inputText = e.value;
     },
     starThis(item) {
-      // this.activeStar = !this.activeStar;
-      setTimeout(() => {
-        // item.started = !item.started;
-        // this.smallStar = !this.smallStar;
-      }, 500);
-
       item.started = !item.started;
       item.animateStarted = item.started;
       setTimeout(() => {
         item.animateStarted = !item.animateStarted;
       }, 500);
     },
+    finishThis(item) {
+      item.finished = true;
+    },
     getBGC(e) {
       // console.log(this);
       return e ? '#54afff' : '#ddeefd';
     },
+
   },
 };
